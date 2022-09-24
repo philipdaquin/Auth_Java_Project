@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CrudJavaProjectApplication {
 
 	public static void main(String[] args) {
+		System.out.println("👋 Welcome to your first Java CRUD project");
 		SpringApplication.run(CrudJavaProjectApplication.class, args);
 	}
 
