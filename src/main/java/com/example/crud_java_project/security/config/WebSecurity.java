@@ -22,9 +22,11 @@ public class WebSecurity  {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     
-    //  We want to secure the endpoints depending on the roles and leave an anonymous 
-    // entry point only for login 
-    //  Restric any DELETE request to an admin role 
+    /*  We want to secure the endpoints depending on the roles and leave an anonymous 
+            entry point only for login 
+        Restrict any DELETE request to an admin role
+         
+    */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { 
         http.csrf()
@@ -55,9 +57,16 @@ public class WebSecurity  {
         return authenticationConfiguration.getAuthenticationManager();
     }
     
-
+    /*
+        DaoAuthenticationProvider is an AuthenticationProvider implementation that leverages a UserDetails
+        Service and Password Encoder to authenticate a username and password  
+    */
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
+
+        /*
+            DaoAuthenticationProvider looks the UserDetails from the UserDetailService  
+        */
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
