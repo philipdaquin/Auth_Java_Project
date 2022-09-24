@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 public class ConfirmationToken {
     
     @SequenceGenerator(
@@ -33,14 +35,14 @@ public class ConfirmationToken {
         strategy = GenerationType.SEQUENCE,
         generator = "confirmation_token_sequence"
     )
-
     private Long id;
-        @Column(nullable = false)   
+    @Column(nullable = false)   
     private String token;
-        @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDateTime createdAt;
-        @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDateTime expiresAt;
+
     private LocalDateTime confirmedAt;
 
 
@@ -55,13 +57,11 @@ public class ConfirmationToken {
             String token, 
             LocalDateTime createdAt, 
             LocalDateTime expiresAt,
-            LocalDateTime confirmedAt,
             AppUser appUser
         ) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.confirmedAt = confirmedAt;
         this.appUser = appUser;
     }
 
