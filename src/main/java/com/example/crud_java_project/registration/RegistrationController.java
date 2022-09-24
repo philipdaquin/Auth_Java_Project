@@ -16,9 +16,9 @@ public class RegistrationController {
 
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) throws Exception { 
-        System.out.printf("\n  Received a new request %s", request);        
+        System.out.printf("\n Received a new request %s", request);        
         
-        System.err.println("\n ⛔ ERROR REGISTERING USER ⛔");
+        // System.err.println("\n ⛔ ERROR REGISTERING USER ⛔");
 
 
         return registrationService.register(request);

@@ -21,7 +21,7 @@ public class AppUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) 
         throws UsernameNotFoundException {
 
-        System.out.println("\n  🚩 Unabled to find user");
+        // System.out.println("\n 🚩 Unabled to find user");
         
         return appUserRepository.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException(
@@ -36,16 +36,17 @@ public class AppUserService implements UserDetailsService {
         // Email already taken 
         if (userExists) throw new IllegalStateException("Email Already Taken");
             
-        System.out.printf("🤔 User already exists!  %s", userExists );
-        
+        // System.out.printf("\n 🤔 User already exists? %s", userExists );
         // New User, so we need to encode their password
         String userPassword = bCryptPasswordEncoder
             .encode(new_user.getPassword());
 
         // Set the user password
-        System.out.printf("👷👷 Setting the user password");
+        // System.out.printf("\n 👷👷 Setting the user password");
         new_user.setPassword(userPassword);
-
+        
+        //  Write to the database
+        appUserRepository.save(new_user);
         // Send confirmation token 
 
         return "LOLOLLOLOLOLOLOLOLOLOLOLOLOL";
