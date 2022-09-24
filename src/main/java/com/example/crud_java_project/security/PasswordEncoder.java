@@ -9,6 +9,7 @@ public class PasswordEncoder {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() { 
+        System.out.println("🔑 GENERATING A NEW LOCK 🔑");
         return new BCryptPasswordEncoder();
     }
 }

@@ -16,14 +16,23 @@ public class RegistrationService {
     private EmailValidator emailValidator;
 
     public String register(RegistrationRequest request) throws Exception {
+        System.out.printf("\n  👋Received a new request ");        
+        
         boolean isValid = emailValidator.test(request.getEmail());
-        if (!isValid) throw new IllegalStateException("Email Not Valid");
+        System.out.printf("\n 👍👍👍   %s",isValid);
 
+        if (!isValid) { 
+            System.err.println("⛔ ERROR REGISTERING USER ⛔");
+            throw new IllegalStateException("Email Not Valid");
+        }
+
+        
+        System.out.printf("👨‍🚒 Creating the User");        
         return appUserService.signUpUser(
             new AppUser(
                 request.getFirstName(),
-                request.getEmail(),
                 request.getLastName(), 
+                request.getEmail(),
                 request.getPassword(),
                 AppUserRole.USER
             )

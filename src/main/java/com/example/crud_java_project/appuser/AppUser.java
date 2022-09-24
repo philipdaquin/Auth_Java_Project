@@ -52,6 +52,8 @@ public class AppUser implements UserDetails {
         String password, 
         AppUserRole appUserRole
     ) {
+        System.out.print("\n  🤣🤣🤣 CREATING A NEW USER");
+        
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -72,7 +74,6 @@ public class AppUser implements UserDetails {
     public String getLastname() {
         return lastName;
     }
-    
     @Override
     public String getUsername() {
         // TODO Auto-generated method stub
