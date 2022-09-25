@@ -40,7 +40,10 @@ public class AppUserService implements UserDetailsService {
             .findByEmail(new_user.getEmail())
             .isPresent();
         // Email already taken 
-        if (userExists) throw new IllegalStateException("Email Already Taken");
+        if (userExists) {
+            
+            throw new IllegalStateException("Email Already Taken");
+        }
             
         System.out.printf("\n 🤔 User already exists? %s", userExists );
         // New User, so we need to encode their password
@@ -70,5 +73,8 @@ public class AppUserService implements UserDetailsService {
 
         return token;
     } 
+    public int enableAppUser(String email) { 
+        return appUserRepository.enableAppUser(email);
+    }
     
 }
